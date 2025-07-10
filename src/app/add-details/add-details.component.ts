@@ -30,7 +30,8 @@ export class AddDetailsComponent implements OnInit {
   maxDate: any;
   serialIdToInsert: string;
 
-  constructor(private sObj: MasterService,public msgObj:MessageService) {
+  constructor(private sObj: MasterService,public msgObj:MessageService) 
+  {
     //creating a obbject to store a form data
     this.detailsObj = new AddDetails();
 
@@ -79,6 +80,12 @@ export class AddDetailsComponent implements OnInit {
     if (form.valid) {
       console.log('Model-bound object:', this.detailsObj); // [(ngModel)] data
 
+    // const year = this.detailsObj.date.getFullYear();
+    // const month = String(this.detailsObj.date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    // const day = String(this.detailsObj.date.getDate()).padStart(2, '0');
+    // const formattedDate = `${year}-${month}-${day}`;
+    //   console.log(formattedDate);
+      
       this.sObj.addData(this.detailsObj).subscribe({
         next: (res) => {
           console.log('Success:', res);

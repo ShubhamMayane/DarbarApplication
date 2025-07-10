@@ -1,0 +1,51 @@
+        [value]="detailsFromDb"
+
+        value attribute la aapan jya array madhil data table madhe render karayacha aahe tya array che nav asa  value mhanun deto.
+        it is a class variable.
+
+        [tableStyle]="{ 'min-width': '50rem' }"
+        
+        we use this attribute to apply styles to table.
+
+        [paginator]="true"
+
+        we use this attribute to show the paginition component for this table .
+        i.ya ya attribute la true hi value dile ki 
+        table chya khali paginition show hot else ya attribute la false hi value 
+        dili ki table chya khali paginition show hot nahi.
+
+        [rows]="10"
+
+        jar ka [paginitor] la true assign asel tarach ha attribute apply kela jato else nahi.
+        ya attribute cha artha asa ki by default jevha table load hoil tevha 10 row show kar.
+        
+        
+        [first]="first"
+
+
+        [showCurrentPageReport]="true"
+   
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        (onPage)="pageChange($event)"
+        
+        [rowsPerPageOptions]="[10, 25, 50]"
+        paginition madhe jo select box asato tyamadhe hya value show hotat 10 ,25,50 asha 
+        aani 
+        10 select kela tar table madhe 10 row show hotat 
+        25 select kele tar table madhe 25 row show honar
+        50 select kele tar table madhe 50 rows show honar
+
+
+        PrimeNg Icons:
+
+
+                How to render a primeNg Icons in the applicaiton:
+
+                    npm install primeicons --save
+
+                Now open angular.json file and tyamadhe build ya key chya aat styles navacha jo array aahe tyamadhe pudhil 
+                element lihi.
+
+                    "node_modules/primeicons/primeicons.css",
+
+

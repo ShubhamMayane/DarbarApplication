@@ -1,0 +1,84 @@
+.main-container{
+
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #b7b7b7;
+    height: 100vh;
+}
+
+.my-input{
+
+    width: 100%;
+    display: block;
+
+}
+
+form{
+
+    width: 50%;
+}
+
+.error-message{
+
+    height: 15px;
+
+}
+
+.error-message span{
+
+    color: red;
+    font-size: 15px;
+}
+
+.date-picker-input{
+
+        padding: 0px !important;
+
+}
+
+
+
+:host ::ng-deep .p-datepicker {
+    width: 100% !important;
+}
+
+
+button{
+    width: 100%;
+    background-color: orange;
+    color: white;
+}
+
+    /*for desktop and laptop and all other big screen*/
+
+    @media screen and (min-width: 1024px)  {}      
+
+
+   /*for Tablet*/
+
+    @media screen and (max-width: 1024px) {
+            .main-container
+            {
+                height: auto;
+            }
+    } 
+
+	
+    /*for mobile screen */
+    @media screen and (max-width: 600px) {
+
+        .main-container{
+            height: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        form
+        {
+            width: 100%;
+        }
+
+    } 

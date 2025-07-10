@@ -1,1 +1,117 @@
-<p>view-details works!</p>
+
+ <p-toast  position="top-right" />
+<div class="mb-4">
+  <p-button
+    type="button"
+    icon="pi pi-chevron-left"
+    (click)="prev()"
+    [disabled]="isFirstPage()"
+    text
+  />
+  <p-button type="button" icon="pi pi-refresh" (click)="reset()" text />
+  <p-button
+    type="button"
+    icon="pi pi-chevron-right"
+    (click)="next()"
+    [disabled]="isLastPage()"
+    text
+  />
+</div>
+
+<p-table
+  #dt2
+  [loading]="loading"
+  [value]="detailsFromDb"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [paginator]="true"
+  [rows]="10"
+  [first]="first"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  (onPage)="pageChange($event)"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [globalFilterFields]="[
+    'Full_Name',
+    'Date',
+    'Purpose',
+    'Total_Amount',
+    'T_Amount'
+  ]"
+>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="Serial_Id" style="width: 20%">
+        <div class="flex items-center gap-2">
+          Serial_Id
+          <p-sortIcon field="Serial_Id" />
+        </div>
+      </th>
+
+      <th pSortableColumn="Full_Name" style="width: 20%">
+        <div class="flex items-center gap-2">
+          Full Name
+          <p-sortIcon field="Full_Name" />
+        </div>
+      </th>
+
+      <th pSortableColumn="Date" style="width: 20%">
+        <div class="flex items-center gap-2">
+          Date
+          <p-sortIcon field="Date" />
+        </div>
+      </th>
+
+      <th pSortableColumn="Purpose" style="width: 20%">
+        <div class="flex items-center gap-2">
+          Purpose
+          <p-sortIcon field="Purpose" />
+        </div>
+      </th>
+
+      <th pSortableColumn="Total_Amount" style="width: 20%">
+        <div class="flex items-center gap-2">
+          Total_Amount
+          <p-sortIcon field="Total_Amount" />
+        </div>
+      </th>
+
+      <th pSortableColumn="T_Amount" style="width: 20%">
+        <div class="flex items-center gap-2">
+          T_Amount
+          <p-sortIcon field="T_Amount" />
+        </div>
+      </th>
+
+       <th style="width: 30%">Action</th>
+
+      <!-- <th>Serial_Id</th> -->
+      <!-- <th>Full Name</th>
+            <th>Date</th> -->
+      <!-- <th>Purpose</th>
+            <th>Total_Amount</th>
+            <th>T Amount</th> -->
+    </tr>
+  </ng-template>
+  <ng-template #body let-detailObj>
+    <tr>
+      <td>{{ detailObj.Serial_Id }}</td>
+      <td>{{ detailObj.Full_Name }}</td>
+      <td>{{ detailObj.Date }}</td>
+      <td>{{ detailObj.Purpose }}</td>
+      <td>{{ detailObj.Total_Amount }}</td>
+      <td>{{ detailObj.T_Amount }}</td>
+      <td>
+        <button (click)="updateDetail(detailObj.Serial_Id)">Update</button>
+        <button (click)="deleteDetail(detailObj.Serial_Id)">Delete</button>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <p-button type="button" icon="pi pi-plus" text />
+  </ng-template>
+  <ng-template #paginatorright>
+    <p-button type="button" icon="pi pi-cloud" text />
+  </ng-template>
+</p-table>
