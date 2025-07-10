@@ -1,0 +1,195 @@
+<div class="main-container">
+    <p-toast  position="top-right" />
+  <h2 class="text-2xl font-bold mb-4">Fill Details</h2>
+
+  <form #dForm="ngForm" (ngSubmit)="onSubmit(dForm)">
+    <!-- Full Name -->
+    <div class="mb-4">
+      <label class="block">Full Name *</label>
+
+      <input
+        pInputText
+        
+        autocomplete="off"
+        name="Fullname"
+        [(ngModel)]="detailsObj.fullName"
+        #fullName="ngModel"
+       
+        required
+        minlength="3"
+        placeholder="Enter Full Name"
+        class="w-full px-3 py-2 border rounded my-input"
+      />
+
+      <div class="error-message">
+        <div
+          class="text-red-600 text-sm"
+          *ngIf="fullName.invalid && fullName.touched"
+        >
+          <span *ngIf="fullName.errors?.['required']"
+            >Full Name is required.</span
+          >
+          <span *ngIf="fullName.errors?.['minlength']"
+            >Minimum 3 characters required.</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="block">Purpose *</label>
+      <!-- <input
+        name="purpose"
+        [(ngModel)]="detailsObj.purpose"
+        #purpose="ngModel"
+        required
+        minlength="3"
+        class="w-full px-3 py-2 border rounded"
+        placeholder="Enter Purpose"
+      /> -->
+
+      <input
+        pInputText
+       
+        autocomplete="off"
+        name="Purpose"
+        [(ngModel)]="detailsObj.purpose"
+        #purpose="ngModel"
+       
+        required
+        minlength="3"
+        placeholder="Enter Purpose"
+        class="w-full px-3 py-2 border rounded my-input"
+      />
+      <div class="error-message">
+        <div
+          class="text-red-600 text-sm"
+          *ngIf="purpose.invalid && purpose.touched"
+        >
+          <span *ngIf="purpose.errors?.['required']">Purpose is required.</span>
+          <span *ngIf="purpose.errors?.['minlength']"
+            >Minimum 3 characters required.</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Date -->
+  <div class="mb-4">
+      <label class="block">Date *</label>
+    <!--     
+        <input
+        type="date"
+        name="date"
+        [(ngModel)]="detailsObj.date"
+        #date="ngModel"
+        required
+        [max]="maxDate"
+        class="w-full px-3 py-2 border rounded my-input"
+      /> -->
+
+      <!-- <p-datepicker [(ngModel)]="detailsObj.date"   #date="ngModel" [showIcon]="true" inputId="buttondisplay" [showOnFocus]="false" required [maxDate]="maxDate" /> -->
+      
+      <p-datepicker 
+             [(ngModel)]="detailsObj.date"
+             [showIcon]="true" 
+             name="Date"
+             inputId="buttondisplay" 
+             [showOnFocus]="false" 
+             #date="ngModel"
+             [maxDate]="maxDate"
+             required 
+             class="w-full px-3 py-2 border rounded my-input date-picker-input"
+             />
+   
+      
+      <div class="error-message">
+        <div class="text-red-600 text-sm" *ngIf="date.invalid && date.touched">
+          <span *ngIf="date.errors?.['required']">Date is required.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Amount -->
+    <div class="mb-4">
+      <label class="block">Total Amount*</label>
+      <input
+        name="TotalAmount"
+        [(ngModel)]="detailsObj.totalAmount"
+        #totalAmt="ngModel"
+        required
+        class="w-full px-3 py-2 border rounded my-input"
+        placeholder="Enter Amount"
+      />
+
+      <div class="error-message">
+        <div
+          class="text-red-600 text-sm"
+          *ngIf="totalAmt.invalid && totalAmt.touched"
+        >
+          <span *ngIf="totalAmt.errors?.['required']"
+            >Total Amount is required.</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="block">T Amount</label>
+      <input
+        name="TAmount"
+        [(ngModel)]="detailsObj.tAmount"
+        #tAmt="ngModel"
+        class="w-full px-3 py-2 border rounded my-input"
+        placeholder="Enter T Amount"
+        />
+    </div>
+
+    <!-- Submit -->
+    <button
+      type="submit"
+      [disabled]="dForm.invalid"
+      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+      Submit
+    </button>
+  </form>
+
+{{ detailsObj | json }}
+
+
+
+</div>
+<!-- 
+<button (click)="getDataToUpdate()">getDataById</button>
+
+<button (click)="resetForm(empForm)">Reset From</button> -->
+
+
+<!-- <table>
+  <thead>
+    <tr>
+      <th>EmpId</th>
+      <th>FullName</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Dob</th>
+      <th>Gender</th>
+      <th>action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of employeesDetails">
+      <td>{{ emp.empId }}</td>
+      <td>{{ emp.fullName }}</td>
+      <td>{{ emp.email }}</td>
+      <td>{{ emp.phone }}</td>
+      <td>{{ emp.dob }}</td>
+      <td>{{ emp.gender }}</td>
+      <td>
+        <button (click)="updateItem(emp.empId)">Update</button>
+
+        <button (click)="deleteItem(emp.empId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table> -->

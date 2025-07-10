@@ -1,0 +1,80 @@
+1.installed following dependencies
+
+    i.  PrimeNg
+    ii. bootstrap
+
+
+2.steps to install primeNg:
+    2.1open cmd and hit following command:
+
+        npm install primeng@latest @primeng/themes
+
+    2.2 Now open the app.config.ts file and do following things in it.
+
+        a.write below import statements
+
+            import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+            import { providePrimeNG } from 'primeng/config';
+            import Aura from '@primeng/themes/aura';
+
+        b.khali providers chya array madhe pudhil don element lihi.
+
+             provideAnimationsAsync(),
+                providePrimeNG({
+                theme: {
+                    preset: Aura,
+                    options: 
+                    {
+                        darkModeSelector: false || 'none' //to avoid the dark mode .
+
+                    }  
+                    
+                }
+                })
+
+    3.Now to check the PrimeNg is susccess fully installed or not do following things
+
+        3.1 open app.component.ts file and do following things in it.
+
+                import { ButtonModule } from 'primeng/button';
+
+        3.2   imports: [ButtonModule] 
+
+
+        3.3 Now open the app.component.html file and write below code in it.
+
+            <p-button label="Check" />
+
+    4.Now run the application by hitting following command
+
+        ng serve -o
+
+
+
+____________
+
+how to acces a query parameter in the component ts file 
+    
+    route element in the routes array
+
+{ path: 'update',component: UpdateDetailsComponent}
+
+    import{OnInit} from '@angular/core';
+    import {ActivatedRoute } from '@angular/router';
+
+    id: string | null = null;
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.queryParamMap.subscribe(params => {
+      this.id = params.get('id');
+      console.log('Query param id:', this.id);
+      // Use the id as needed
+    });
+  }
+
+
+  Now hit following url to reder the view detail component and send the query parameter to it.
+
+    localhost:4200/update?id=13
