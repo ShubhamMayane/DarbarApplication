@@ -9,6 +9,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { DatePickerModule } from 'primeng/datepicker';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-details',
@@ -30,7 +31,7 @@ export class AddDetailsComponent implements OnInit {
   maxDate: any;
   serialIdToInsert: string;
 
-  constructor(private sObj: MasterService,public msgObj:MessageService) 
+  constructor(private sObj: MasterService,public msgObj:MessageService,public router:Router) 
   {
     //creating a obbject to store a form data
     this.detailsObj = new AddDetails();
@@ -110,6 +111,13 @@ export class AddDetailsComponent implements OnInit {
       });
     }
   }
+
+ goToViewDetails()
+  {
+    this.router.navigate(['/view']);
+  }
+
+
 
   // getDataToUpdate(){
 

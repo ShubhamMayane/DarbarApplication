@@ -1,5 +1,5 @@
 <div class="main-container">
-    <p-toast  position="top-right" />
+  <p-toast position="top-right" />
   <h2 class="text-2xl font-bold mb-4">Fill Details</h2>
 
   <form #dForm="ngForm" (ngSubmit)="onUpdate(dForm)">
@@ -9,12 +9,10 @@
 
       <input
         pInputText
-        
         autocomplete="off"
         name="Fullname"
         [(ngModel)]="detailsObj.fullName"
         #fullName="ngModel"
-       
         required
         minlength="3"
         placeholder="Enter Full Name"
@@ -50,7 +48,6 @@
 
       <input
         pInputText
-       
         autocomplete="off"
         name="Purpose"
         [(ngModel)]="detailsObj.purpose"
@@ -74,9 +71,9 @@
     </div>
 
     <!-- Date -->
-  <div class="mb-4">
+    <div class="mb-4">
       <label class="block">Date *</label>
-    <!--     
+      <!--     
         <input
         type="date"
         name="date"
@@ -88,20 +85,19 @@
       /> -->
 
       <!-- <p-datepicker [(ngModel)]="detailsObj.date"   #date="ngModel" [showIcon]="true" inputId="buttondisplay" [showOnFocus]="false" required [maxDate]="maxDate" /> -->
-      
-      <p-datepicker 
-             [(ngModel)]="detailsObj.date"
-             [showIcon]="true" 
-             name="Date"
-             inputId="buttondisplay" 
-             [showOnFocus]="false" 
-             #date="ngModel"
-             [maxDate]="maxDate"
-             required 
-             class="w-full px-3 py-2 border rounded my-input date-picker-input"
-             />
-   
-      
+
+      <p-datepicker
+        [(ngModel)]="detailsObj.date"
+        [showIcon]="true"
+        name="Date"
+        inputId="buttondisplay"
+        [showOnFocus]="false"
+        #date="ngModel"
+        [maxDate]="maxDate"
+        required
+        class="w-full px-3 py-2 border rounded my-input date-picker-input"
+      />
+
       <div class="error-message">
         <div class="text-red-600 text-sm" *ngIf="date.invalid && date.touched">
           <span *ngIf="date.errors?.['required']">Date is required.</span>
@@ -141,21 +137,27 @@
         #tAmt="ngModel"
         class="w-full px-3 py-2 border rounded my-input"
         placeholder="Enter T Amount"
-        />
+      />
     </div>
 
     <!-- Submit -->
     <button
       type="submit"
       [disabled]="dForm.invalid"
-      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-     Update
+      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    >
+      Update
+    </button>
+
+    <br />
+    <br />
+
+    <button
+    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    (click)="backToViewPage()">
+      Back To View
     </button>
   </form>
 
-{{ detailsObj | json }}
-
-
-
+  {{ detailsObj | json }}
 </div>
-

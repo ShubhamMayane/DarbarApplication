@@ -50,6 +50,8 @@ button{
     width: 100%;
     background-color: orange;
     color: white;
+    border: none;
+
 }
 
     /*for desktop and laptop and all other big screen*/

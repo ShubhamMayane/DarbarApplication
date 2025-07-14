@@ -47,15 +47,18 @@ export class UpdateDetailsComponent implements OnInit {
       console.log('Query param SerialId:', this.serialId);
       // alert(this.serialId);
 
+      console.log(this.serialId);
+
       //calling getDetailBy serialId
       this.sObj.getDetailBySerialId(this.serialId).subscribe((res) => {
-        console.log(res[0]);
+
+        console.log(res);
         // console.log(res[0].Full_Name);
-        this.detailsObj.fullName = res[0].Full_Name;
-        this.detailsObj.date = new Date(res[0].Date);
-        this.detailsObj.purpose = res[0].Purpose;
-        this.detailsObj.totalAmount = res[0].Total_Amount;
-        this.detailsObj.tAmount = res[0].T_Amount;
+        this.detailsObj.fullName = res.Full_Name;
+        this.detailsObj.date = new Date(res.Date);
+        this.detailsObj.purpose = res.Purpose;
+        this.detailsObj.totalAmount = res.Total_Amount;
+        this.detailsObj.tAmount = res.T_Amount;
         console.log(this.detailsObj);
       });
     });
@@ -89,5 +92,11 @@ export class UpdateDetailsComponent implements OnInit {
         },
       });
     }
+  }
+
+
+  backToViewPage()
+  {
+    this.router.navigate(['/view']);
   }
 }

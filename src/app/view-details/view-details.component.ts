@@ -8,14 +8,21 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-view-details',
   imports: [
     TableModule,
+    CommonModule,
     ButtonModule,
     IconFieldModule,
     InputTextModule,
     ToastModule,
+    MultiSelectModule,
+    FormsModule
   ],
   templateUrl: './view-details.component.html',
   styleUrl: './view-details.component.css',
@@ -24,11 +31,19 @@ import { Router } from '@angular/router';
 export class ViewDetailsComponent implements OnInit {
   detailsFromDb: any; //to hold the all data from db
 
+
+
+
   first = 0;
 
   rows = 10;
 
   loading: boolean = true;
+
+    //for select date filter select box
+  dateFilterOptions:any;
+
+  dateFilterValue:any[]=[];
 
   constructor(private sObj: MasterService, public msgObj: MessageService,public router: Router) {}
 
@@ -36,12 +51,14 @@ export class ViewDetailsComponent implements OnInit {
     this.sObj.getAll().subscribe((res) => {
       this.loading = false;
       this.detailsFromDb = res;
+      this.dateFilterOptions=this.getUniqueDates(res)
+      console.log(this.dateFilterOptions);
+      
     });
   }
 
   refreshTableData() {
     this.loading = true;
-
     this.sObj.getAll().subscribe((res) => {
       this.loading = false;
       this.detailsFromDb = res;
@@ -98,4 +115,39 @@ export class ViewDetailsComponent implements OnInit {
       this.refreshTableData();
     });
   }
+
+
+
+//function to get unique values of date in the array of object.
+ getUniqueDates(data:any): string[] {
+  const uniqueDates = new Set<string>();
+
+  for (const item of data) {
+    if (item.Date) {
+      uniqueDates.add(item.Date);
+    }
+  }
+
+  return Array.from(uniqueDates);
+}
+  
+
+  goToAddNewDetails()
+  {
+    this.router.navigate(['/add']);
+  }
+
+
+
+  clearFilter(table:any)
+  {
+
+
+        this.dateFilterValue=[];
+        //logic to reset the table
+        table.clear(); // clears all filters, global and column-specific
+    
+  }
+
+
 }

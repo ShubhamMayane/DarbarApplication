@@ -7,12 +7,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MasterService {
-  // baseUrl = 'https://sheetdb.io/api/v1/vt227ch0gi6em'; // replace with your real SheetDB API URL
-  baseUrl="api url ";
+  
+  baseUrl = 'http://localhost:3000'; 
+  
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl);
+    return this.http.get<any[]>(this.baseUrl+'/api/data');
   }
 
   addData(inputData: AddDetails): Observable<any> {
@@ -37,7 +38,7 @@ export class MasterService {
       T_Amount: inputData.tAmount,
     };
 
-    return this.http.post(this.baseUrl, { data: inputObject });
+    return this.http.post(this.baseUrl+'/api/data', { data: inputObject });
   }
 
   updateBySerialId(serialId: string, data: any): Observable<any> {
@@ -63,14 +64,18 @@ export class MasterService {
       T_Amount: data.tAmount,
     };
 
-    return this.http.put(`${this.baseUrl}/Serial_Id/${serialId}`,{inputObject});
+    return this.http.put(`${this.baseUrl}/api/data/Serial_Id/${serialId}`,{inputObject});
   }
+
 
   deleteBySerialId(serialId: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/Serial_Id/${serialId}`);
+    return this.http.delete(`${this.baseUrl}/api/data/Serial_Id/${serialId}`);
   }
 
-  getDetailBySerialId(id: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/search?Serial_Id=${id}`);
+
+  // http://localhost:3000/api/data/search?Serial_Id=22
+  getDetailBySerialId(id: string): Observable<any> 
+  {
+    return this.http.get(`${this.baseUrl}/api/data/search?Serial_Id=${id}`);
   }
 }
