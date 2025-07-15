@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
     InputTextModule,
     ToastModule,
     MultiSelectModule,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './view-details.component.html',
   styleUrl: './view-details.component.css',
@@ -31,29 +31,29 @@ import { FormsModule } from '@angular/forms';
 export class ViewDetailsComponent implements OnInit {
   detailsFromDb: any; //to hold the all data from db
 
-
-
-
   first = 0;
 
   rows = 10;
 
   loading: boolean = true;
 
-    //for select date filter select box
-  dateFilterOptions:any;
+  //for select date filter select box
+  dateFilterOptions: any;
 
-  dateFilterValue:any[]=[];
+  dateFilterValue: any[] = [];
 
-  constructor(private sObj: MasterService, public msgObj: MessageService,public router: Router) {}
+  constructor(
+    private sObj: MasterService,
+    public msgObj: MessageService,
+    public router: Router
+  ) {}
 
   ngOnInit(): void {
     this.sObj.getAll().subscribe((res) => {
       this.loading = false;
       this.detailsFromDb = res;
-      this.dateFilterOptions=this.getUniqueDates(res)
+      this.dateFilterOptions = this.getUniqueDates(res);
       console.log(this.dateFilterOptions);
-      
     });
   }
 
@@ -92,15 +92,14 @@ export class ViewDetailsComponent implements OnInit {
     return this.detailsFromDb ? this.first === 0 : true;
   }
 
+  //function to hit a localhost:4000/update url.
   updateDetail(serialId: any) {
     console.log(serialId);
-    //hit route of updateDetails component 
+    //hit route of updateDetails component
 
-     this.router.navigate(['/update'], { queryParams: { inputSerialId: serialId } });
-
-    
-
-
+    this.router.navigate(['/update'], {
+      queryParams: { inputSerialId: serialId },
+    });
   }
   deleteDetail(serialId: any) {
     console.log(serialId);
@@ -116,38 +115,27 @@ export class ViewDetailsComponent implements OnInit {
     });
   }
 
+  //function to get unique values of date in the array of object.
+  getUniqueDates(data: any): string[] {
+    const uniqueDates = new Set<string>();
 
-
-//function to get unique values of date in the array of object.
- getUniqueDates(data:any): string[] {
-  const uniqueDates = new Set<string>();
-
-  for (const item of data) {
-    if (item.Date) {
-      uniqueDates.add(item.Date);
+    for (const item of data) {
+      if (item.Date) {
+        uniqueDates.add(item.Date);
+      }
     }
+
+    return Array.from(uniqueDates);
   }
 
-  return Array.from(uniqueDates);
-}
-  
-
-  goToAddNewDetails()
+  goToAddNewDetails() 
   {
     this.router.navigate(['/add']);
   }
 
-
-
-  clearFilter(table:any)
-  {
-
-
-        this.dateFilterValue=[];
-        //logic to reset the table
-        table.clear(); // clears all filters, global and column-specific
-    
+  clearFilter(table: any) {
+    this.dateFilterValue = [];
+    //logic to reset the table
+    table.clear(); // clears all filters, global and column-specific
   }
-
-
 }

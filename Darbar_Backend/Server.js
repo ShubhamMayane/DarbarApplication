@@ -68,7 +68,8 @@ app.post("/api/data", async (req, res) => {
     const record = new Record(input);
     await record.save();
     res.status(201).json({ message: "Record added", data: record });
-  } catch (err) {
+  } catch (err) 
+  {
     res.status(400).json({ message: err.message });
   }
 });
