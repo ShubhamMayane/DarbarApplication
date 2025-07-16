@@ -133,7 +133,8 @@ export class ViewDetailsComponent implements OnInit {
     this.router.navigate(['/add']);
   }
 
-  clearFilter(table: any) {
+  clearFilter(table: any) 
+  {
     this.dateFilterValue = [];
     //logic to reset the table
     table.clear(); // clears all filters, global and column-specific

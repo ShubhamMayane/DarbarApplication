@@ -35,3 +35,14 @@
     text-decoration: none;
 
 }
+
+.clear-filter{
+
+    background-color: green;
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 8px;
+    width: 100px;
+}

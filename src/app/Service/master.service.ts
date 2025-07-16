@@ -8,7 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class MasterService {
   
-  baseUrl = 'http://localhost:3000'; 
+
+   baseUrl = process.env['BASE_API_URL'];;
+  // baseUrl = 'http://localhost:3000'; //api url for local backend application 
   
   constructor(private http: HttpClient) {}
 
@@ -16,7 +18,8 @@ export class MasterService {
     return this.http.get<any[]>(this.baseUrl+'/api/data');
   }
 
-  addData(inputData: AddDetails): Observable<any> {
+  addData(inputData: AddDetails): Observable<any> 
+  {
     let inputObject;
     // console.log(inputData);
     // console.log(inputObject);
@@ -68,7 +71,8 @@ export class MasterService {
   }
 
 
-  deleteBySerialId(serialId: string): Observable<any> {
+  deleteBySerialId(serialId: string): Observable<any> 
+  {
     return this.http.delete(`${this.baseUrl}/api/data/Serial_Id/${serialId}`);
   }
 
